@@ -10,7 +10,6 @@ ${start_at}
 ${end_at}
 
 *** Keywords ***
-
 Generate number and date consts
     ${currentTimePlus1}=      Get Time Plus Hours       1
     ${currentTimePlus2}=      Get Time Plus Hours       2
@@ -20,6 +19,7 @@ Generate number and date consts
     Set Suite Variable    ${currentTimePlus2}
     Set Suite Variable    ${currentTimePlus3}
     Set Suite Variable    ${currentTimePlus4}
+
 Feegow Rest API - Data set
     ${local_id}=           Set Variable   1
     ${patient_id}=         Set Variable   9
@@ -45,7 +45,7 @@ Feegow Rest API - Data set
     Set Suite Variable    ${horario}
     Set Suite Variable    ${obs_id}
 
-Connector Doctoralia Callbacks Token - Generate the bearer token
+Connector Docplanner Callbacks Token - Generate the bearer token
     ${callbacks_headers}=              Create Dictionary    Authorization=Bearer ${CONNECTORAPI_CALLBACKS_TOKEN}    Content-Type=application/json
     Set Suite Variable       ${callbacks_headers}
 
@@ -53,8 +53,8 @@ Generate connector-api headers
     &{connectorApi_headers}=   Create Dictionary    Authorization=Bearer ${CONNECTOR_API_TOKEN}
     Set Suite Variable       &{connectorApi_headers}
 
-Feegow Rest API - Criar Agendamento
-    ${feegowAPI_booking}=    Load Json From File    file_name=${robot_dir}${/}data${/}feegow_rest_api${/}agendamentos${/}novoAgendamento.json 
+Feegow Rest API - Create Appointment
+    ${feegowAPI_booking}=    Load Json From File    file_name=${robot_dir}${/}data${/}feegow_rest_api${/}appointment${/}newAppoint.json 
     Set To Dictionary         ${feegowAPI_booking}    local_id           ${local_id}
     Set To Dictionary         ${feegowAPI_booking}    paciente_id        ${patient_id}
     Set To Dictionary         ${feegowAPI_booking}    profissional_id    ${profissional_id}
@@ -63,22 +63,22 @@ Feegow Rest API - Criar Agendamento
     Set To Dictionary         ${feegowAPI_booking}    valor              ${valor_id}
     Set To Dictionary         ${feegowAPI_booking}    plano              ${plano_id}
 
-Doctoralia Callbacks Payloads
-    ${slotBooking}=           Load JSON From File     file_name=${robot_dir}${/}data${/}doctoralia_callbacks${/}booking${/}slotBooking.json
+Docplanner Callbacks Payloads
+    ${slotBooking}=           Load JSON From File     file_name=${robot_dir}${/}data${/}docplanner_callbacks${/}booking${/}slotBooking.json
     Set To Dictionary         ${slotBooking['data']['visit_booking_request']}    start_at    ${currentTimePlus1}
     Set To Dictionary         ${slotBooking['data']['visit_booking_request']}    end_at      ${currentTimePlus2}
     Set To Dictionary         ${slotBooking['data']['visit_booking_request']}    booking_at       ${currentTimePlus1}
     Set To Dictionary         ${slotBooking}    created_at      ${currentTimePlus1}
     Set Suite Variable        ${slotBooking}
 
-    ${slotBooked}=            Load JSON From File     file_name=${robot_dir}${/}data${/}doctoralia_callbacks${/}booking${/}slotBooked.json
+    ${slotBooked}=            Load JSON From File     file_name=${robot_dir}${/}data${/}docplanner_callbacks${/}booking${/}slotBooked.json
     Set To Dictionary         ${slotBooked['data']['visit_booking']}    id    ${booked_slot[0]}
     Set To Dictionary         ${slotBooked['data']['visit_booking']}    start_at    ${currentTimePlus1}
     Set To Dictionary         ${slotBooked['data']['visit_booking']}    end_at    ${currentTimePlus2}
     Set To Dictionary         ${slotBooked['data']['visit_booking']}    booking_at    ${currentTimePlus1}
     Set Suite Variable        ${slotBooked}
 
-    ${bookingMoving}=    Load JSON From File    file_name=${robot_dir}${/}data${/}doctoralia_callbacks${/}booking${/}bookingMoving.json
+    ${bookingMoving}=    Load JSON From File    file_name=${robot_dir}${/}data${/}docplanner_callbacks${/}booking${/}bookingMoving.json
     Set To Dictionary    ${bookingMoving['data']['canceling_booking']}    id    ${booked_slot[0]}
     Set To Dictionary    ${bookingMoving['data']['canceling_booking']}    start_at    ${currentTimePlus1}
     Set To Dictionary    ${bookingMoving['data']['canceling_booking']}    end_at    ${currentTimePlus2}
@@ -87,7 +87,7 @@ Doctoralia Callbacks Payloads
     Set To Dictionary    ${bookingMoving['data']['creating_booking']['address_service']}    id    ${addressService_id}
     Set Suite Variable    ${bookingMoving}
     
-    ${bookingMoved}=          Load JSON From File     file_name=${robot_dir}${/}data${/}doctoralia_callbacks${/}booking${/}bookingMoved.json
+    ${bookingMoved}=          Load JSON From File     file_name=${robot_dir}${/}data${/}docplanner_callbacks${/}booking${/}bookingMoved.json
     Set To Dictionary         ${bookingMoved['data']['old_visit_booking']}    id       ${booked_slot[0]}
     DocPlanner API - Book Second Slot    ${currentTimePlus3}
     Set To Dictionary         ${bookingMoved['data']['new_visit_booking']}    id       ${secondBooked_slot[0]}
@@ -96,22 +96,22 @@ Doctoralia Callbacks Payloads
     Set To Dictionary         ${bookingMoved['data']['new_visit_booking']}    booked_at       ${currentTimePlus3}
     Set Suite Variable        ${bookingMoved}
 
-    ${bookingConfirmed}=      Load JSON From File     file_name=${robot_dir}${/}data${/}doctoralia_callbacks${/}booking${/}bookingConfirmed.json
+    ${bookingConfirmed}=      Load JSON From File     file_name=${robot_dir}${/}data${/}docplanner_callbacks${/}booking${/}bookingConfirmed.json
     Set To Dictionary         ${bookingConfirmed['data']['visit_booking']}    id        ${secondBooked_slot[0]}
     Set Suite Variable        ${bookingConfirmed}
     
-    ${bookingCanceled}=       Load JSON From File     file_name=${robot_dir}${/}data${/}doctoralia_callbacks${/}booking${/}bookingCanceled.json
+    ${bookingCanceled}=       Load JSON From File     file_name=${robot_dir}${/}data${/}docplanner_callbacks${/}booking${/}bookingCanceled.json
     DocPlanner API - Cancel Booking Slot      ${secondBooked_slot[0]}  
     Set To Dictionary         ${bookingCanceled['data']['visit_booking']}        id       ${secondBooked_slot[0]}  
     Set Suite Variable        ${bookingCanceled}
     
-    ${addressAssigned}=       Load JSON From File     file_name=${robot_dir}${/}data${/}doctoralia_callbacks${/}doctor${/}addressAssigned.json
+    ${addressAssigned}=       Load JSON From File     file_name=${robot_dir}${/}data${/}docplanner_callbacks${/}doctor${/}addressAssigned.json
     Set Suite Variable        ${addressAssigned}
     
-    ${addressUnassigned}=     Load JSON From File     file_name=${robot_dir}${/}data${/}doctoralia_callbacks${/}doctor${/}addressUnassigned.json
+    ${addressUnassigned}=     Load JSON From File     file_name=${robot_dir}${/}data${/}docplanner_callbacks${/}doctor${/}addressUnassigned.json
     Set Suite Variable        ${addressUnassigned}
     
-    ${addressServiceDeleted}=     Load JSON From File     file_name=${robot_dir}${/}data${/}doctoralia_callbacks${/}address_services${/}addressServiceDeleted.json
+    ${addressServiceDeleted}=     Load JSON From File     file_name=${robot_dir}${/}data${/}docplanner_callbacks${/}address_services${/}addressServiceDeleted.json
     Set Suite Variable        ${addressServiceDeleted}
 
 Feegow Callbacks Payloads
@@ -155,11 +155,10 @@ Feegow Callbacks Payloads
     ${feegow_calendarBreakEdit}=     Load JSON From File     file_name=${robot_dir}${/}data${/}feegow_callbacks${/}calendar_breaks${/}calendar_break_edit.json
     Set Suite Variable        ${feegow_calendarBreakEdit}
 
-
 API Payload Setup
     Generate number and date consts
-    Connector Doctoralia Callbacks Token - Generate the bearer token
-    DocPlanner API - Generate the bearer token
+    Connector Docplanner Callbacks Token - Generate the bearer token
+    Docplanner API - Generate the bearer token
     Generate connector-api headers
     Connector API - Doctor Full Reset
     Feegow Rest API - Data set
@@ -167,5 +166,5 @@ API Payload Setup
     Docplanner API - Get Doctor Id
     Docplanner API - Get Address Id
     DocPlanner API - Book Slot        ${currentTimePlus1}
-    Doctoralia Callbacks Payloads
+    Docplanner Callbacks Payloads
     Feegow Callbacks Payloads

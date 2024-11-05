@@ -8,6 +8,3 @@ Feegow Callbacks
     Feegow Callbacks - Booking - Booking Edit
     Feegow Callbacks - Booking - Booking Moved
     Feegow Callbacks - Booking - Booking Canceled
-
-
-
