@@ -8,8 +8,8 @@ After the instalation is done you will need to install the robotframework allure
 
 After that, you can execute the test you want to get e report, by using the command bellow:
 
-1. python -m robot --listener allure_robotframework ./robot/tests/docplanner-callbacks.robot
+1. ``` python -m robot --listener allure_robotframework ./robot/tests/docplanner-callbacks.robot ```
 
 To generate the Allure Report use this command:
 
-2. allure serve output/allure
+2. ``` allure serve output/allure ```
