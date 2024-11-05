@@ -1,1 +1,4 @@
 results
+*.html
+*.xml
+output/allure
