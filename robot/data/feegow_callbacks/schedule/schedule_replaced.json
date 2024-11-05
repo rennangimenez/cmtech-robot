@@ -1,0 +1,17 @@
+{
+    "event": "schedule/replace",
+    "licenseID": 28218,
+    "payload": {
+        "ProfissionalID": 1,
+        "UnidadeID": 0,
+        "HoraDe": "11:00:00",
+        "HoraA": "18:00:00",
+        "LocalID": 1,
+        "Intervalo": 30,
+        "Compartilhada": "S",
+        "TipoGrade": "0",
+        "InicioVigencia": "NULL",
+        "FimVigencia": "NULL",
+        "id": 15
+    }
+}

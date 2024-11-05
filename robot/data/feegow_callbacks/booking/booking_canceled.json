@@ -1,0 +1,11 @@
+{
+    "event": "booking/cancel",
+    "licenseID": 17973,
+    "payload": {
+        "value": {
+            "ProfissionalID": 8,
+            "UnidadeID": 0,
+            "id": 98
+        }
+    }
+}

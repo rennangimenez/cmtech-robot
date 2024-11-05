@@ -1,0 +1,10 @@
+{
+    "event": "schedule-exception/replace",
+    "licenseID": 17973,
+    "payload": {
+        "UnidadeID": 0,
+        "id": -13,
+        "DiaSemana": 1,
+        "ProfissionalID": 1
+    }
+}

@@ -1,0 +1,82 @@
+{
+    "name": "booking-moved",
+    "data": {
+        "facility": {
+            "id": "120380",
+            "name": "QA FeegowAtomationClinic",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380",
+                    "method": "get"
+                },
+                "doctors": {
+                    "href": "/api/v3/integration/facilities/120380/doctors",
+                    "method": "get"
+                }
+            }
+        },
+        "doctor": {
+            "id": "826702",
+            "name": "QA Feegow",
+            "surname": "Caio",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702",
+                    "method": "get"
+                }
+            }
+        },
+        "address": {
+            "id": "1138668",
+            "name": "QA FeegowAtomationClinic",
+            "street": "Rua Rodrigo Lobato",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702/addresses/1138668",
+                    "method": "get"
+                },
+                "facility": {
+                    "href": "/api/v3/integration/facilities/120380",
+                    "method": "get"
+                },
+                "doctor": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702",
+                    "method": "get"
+                },
+                "services": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702/addresses/1138668/services",
+                    "method": "get"
+                }
+            }
+        },
+        "old_visit_booking": {
+            "id": "45435138"
+        },
+        "new_visit_booking": {
+            "id": "123123432",
+            "status": "booked",
+            "start_at": "2022-10-07T12:00:00-03:00",
+            "end_at": "2022-10-07T12:30:00-03:00",
+            "duration": 60,
+            "booked_by": "integration",
+            "canceled_by": "",
+            "booked_at": "2022-10-04T16:06:41-03:00",
+            "address_service": {
+                "id": "2271089",
+                "name": "Consulta nutricionista",
+                "is_price_from": false,
+                "is_visible": true
+            },
+            "patient": {
+                "name": "Dennys",
+                "surname": "Marcos Machado de Oliveira",
+                "email": "me@dennys.dev",
+                "phone": "+5512997821301",
+                "birth_date": "1998-11-24",
+                "nin": "36253254898",
+                "gender": "m"
+            }
+        }
+    },
+    "created_at": "2021-05-14T15:46:34+01:00"
+}

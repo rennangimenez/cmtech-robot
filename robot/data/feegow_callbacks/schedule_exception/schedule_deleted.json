@@ -1,0 +1,16 @@
+{
+    "event": "schedule-exception/delete",
+    "licenseID": 17973,
+    "payload": {
+        "UnidadeID": 0,
+        "id": 7,
+        "DataDe": "2022-10-05T00:00:00.000Z",
+        "DataA": "2022-10-05T00:00:00.000Z",
+        "HoraDe": "09:00:00",
+        "HoraA": "12:00:00",
+        "ProfissionalID": 1,
+        "LocalID": 1,
+        "Intervalo": 10,
+        "Compartilhar": "S"
+    }
+}

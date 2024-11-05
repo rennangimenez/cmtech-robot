@@ -1,0 +1,17 @@
+{
+    "event": "calendar-break/create",
+    "licenseID": 32236,
+    "payload": {
+        "UnidadeID": "",
+        "DataDe": "2024-10-11",
+        "DataA": "2024-10-11",
+        "HoraDe": "08:00:00",
+        "HoraA": "12:00:00",
+        "ProfissionalID": 2,
+        "Titulo": "teste bloqueio",
+        "Descricao": "",
+        "DiasSemana": "1 2 3 4 5 6 7",
+        "BloqueioMulti": "N",
+        "id": 738
+    }
+}

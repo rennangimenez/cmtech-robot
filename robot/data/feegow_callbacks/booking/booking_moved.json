@@ -1,0 +1,11 @@
+{
+    "event": "booking/moved",
+    "licenseID": 17973,
+    "payload": {
+        "UnidadeID": 0,
+        "ProfissionalID": 1,
+        "NomeClinica": "Doctoralia Demo",
+        "SysUser": 160116117,
+        "id": 1766
+    }
+}

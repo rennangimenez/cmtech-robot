@@ -1,0 +1,81 @@
+{
+    "name": "booking-canceled",
+    "data": {
+        "facility": {
+            "id": "120380",
+            "name": "QA FeegowAtomationClinic",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380",
+                    "method": "get"
+                },
+                "doctors": {
+                    "href": "/api/v3/integration/facilities/120380/doctors",
+                    "method": "get"
+                }
+            }
+        },
+        "doctor": {
+            "id": "826702",
+            "name": "QA Feegow",
+            "surname": "Caio",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702",
+                    "method": "get"
+                }
+            }
+        },
+        "address": {
+            "id": "1138668",
+            "name": "QA FeegowAtomationClinic",
+            "street": "Rua Rodrigo Lobato",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702/addresses/1138668",
+                    "method": "get"
+                },
+                "facility": {
+                    "href": "/api/v3/integration/facilities/120380",
+                    "method": "get"
+                },
+                "doctor": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702",
+                    "method": "get"
+                },
+                "services": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702/addresses/1138668/services",
+                    "method": "get"
+                }
+            }
+        },
+        "visit_booking": {
+            "id": "62637456",
+            "status": "canceled",
+            "start_at": "2022-08-12T16:00:00+01:00",
+            "end_at": "2022-08-12T16:30:00+01:00",
+            "duration": 30,
+            "booked_by": "user",
+            "canceled_by": "user",
+            "booked_at": "2021-05-12T10:18:24+01:00",
+            "canceled_at": "2021-05-14T15:45:57+01:00",
+            "address_service": {
+                "id": "",
+                "name": "Consulta Eletiva",
+                "price": 150,
+                "is_price_from": false,
+                "is_visible": true
+            },
+            "patient": {
+                "name": "Dennys",
+                "surname": "Oliveira",
+                "email": "dennysoliveira@feegow.com.br",
+                "phone": "+5512997821301",
+                "birth_date": "1998-11-24",
+                "nin": "36253254898",
+                "gender": "m"
+            }
+        }
+    },
+    "created_at": "2022-08-11T15:46:34+01:00"
+}

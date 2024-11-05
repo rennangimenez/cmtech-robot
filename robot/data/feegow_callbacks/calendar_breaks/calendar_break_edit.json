@@ -1,0 +1,17 @@
+{
+    "event": "calendar-break/edit",
+    "licenseID": 17768,
+    "payload": {
+        "UnidadeID": "",
+        "DataDe": "2024-03-01",
+        "DataA": "2024-03-01",
+        "HoraDe": "11:00:00",
+        "HoraA": "12:00:00",
+        "ProfissionalID": 1,
+        "Titulo": "Teste Docplanner",
+        "Descricao": "Teste de bloqueio",
+        "DiasSemana": "1 2 3 4 5 6 7",
+        "BloqueioMulti": "N",
+        "id": 518
+    }
+}

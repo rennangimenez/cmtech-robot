@@ -1,0 +1,64 @@
+{
+    "name": "address-service-deleted",
+    "data": {
+        "facility": {
+            "id": "120380",
+            "name": "QA FeegowAtomationClinic",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380",
+                    "method": "get"
+                },
+                "doctors": {
+                    "href": "/api/v3/integration/facilities/120380/doctors",
+                    "method": "get"
+                }
+            }
+        },
+        "doctor": {
+            "id": "826702",
+            "name": "QA Feegow",
+            "surname": "Caio",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702",
+                    "method": "get"
+                }
+            }
+        },
+        "address": {
+            "id": "1138668",
+            "name": "QA FeegowAtomationClinic",
+            "street": "Rua Rodrigo Lobato",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702/addresses/1138668",
+                    "method": "get"
+                },
+                "facility": {
+                    "href": "/api/v3/integration/facilities/120380",
+                    "method": "get"
+                },
+                "doctor": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702",
+                    "method": "get"
+                },
+                "services": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702/addresses/1138668/services",
+                    "method": "get"
+                }
+            }
+        },
+        "address_service": {
+            "id": "3640172",
+            "name": "Consulta clínico geral",
+            "price": 10,
+            "is_price_from": false,
+            "service_id": "5072",
+            "is_default": false,
+            "description": "",
+            "is_visible": true
+        }
+    },
+    "created_at": "2023-08-28T16:09:26-03:00"
+}

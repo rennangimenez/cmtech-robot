@@ -1,0 +1,88 @@
+{
+  "name": "booking-moving",
+  "data": {
+    "facility": {
+      "id": "120380",
+      "name": "QA FeegowTelemedicinClinic",
+      "_links": {
+        "self": {
+          "href": "/api/v3/integration/facilities/120380",
+          "method": "get"
+        }
+      }
+    },
+    "doctor": {
+      "id": "826702",
+      "name": "QA Feegow",
+      "surname": "Caio",
+      "_links": {
+        "self": {
+          "href": "/api/v3/integration/facilities/120380/doctors/826702",
+          "method": "get"
+        }
+      }
+    },
+    "address": {
+    "id": "1138668",
+    "name": "QA FeegowAtomationClinic",
+    "street": "Rua Rodrigo Lobato",
+    "_links": {
+        "self": {
+            "href": "/api/v3/integration/facilities/120380/doctors/826702/addresses/1138668",
+            "method": "get"
+        },
+        "facility": {
+            "href": "/api/v3/integration/facilities/120380",
+            "method": "get"
+        },
+        "doctor": {
+            "href": "/api/v3/integration/facilities/120380/doctors/826702",
+            "method": "get"
+        },
+        "services": {
+            "href": "/api/v3/integration/facilities/120380/doctors/826702/addresses/1138668/services",
+            "method": "get"
+        }
+    }
+},
+    "canceling_booking": {
+      "id": "120717615",
+      "start_at": "2024-11-23T15:00:00-03:00",
+      "end_at": "2024-11-23T15:30:00-03:00",
+      "duration": 60,
+      "booked_by": "doctor",
+      "booked_at": "2024-01-30T22:21:56-03:00",
+      "canceling_by": "user",
+      "canceling_at": "2024-01-30T22:25:53-03:00",
+      "address_service": {
+        "id": "3786802",
+        "name": "Teleconsulta",
+        "price": 100,
+        "is_price_from": false,
+        "service_id": "5044",
+        "is_default": false,
+        "description": "",
+        "is_visible": true
+      }
+    },
+    "creating_booking": {
+      "start_at": "2024-12-23T15:00:00-03:00",
+      "end_at": "2024-12-23T15:45:00-03:00",
+      "duration": 60,
+      "booking_by": "integration",
+      "booking_at": "2024-12-23T15:00:00-03:00",
+      "address_service":  {
+            "id": "3786802",
+            "name": "Consulta Patologia",
+            "price": null,
+            "is_price_from": false,
+            "service_id": "4173",
+            "is_default": true,
+            "description": "",
+            "is_visible": true
+        },
+      "signature": "f1862417-20c1-3e0e-7007-a98d4fce53ca"
+    }
+  },
+  "created_at": "2024-01-30T22:25:53-03:00"
+}

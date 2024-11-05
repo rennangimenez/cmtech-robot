@@ -1,0 +1,18 @@
+{
+	"event" : "calendar-break/delete",
+	"licenseID" : 32748,
+	"payload" : {
+		"UnidadeID" : "",
+		"id" : 6,
+		"DataDe" : "2024-08-06",
+		"DataA" : "2024-08-06",
+		"HoraDe" : "09:00:00",
+		"HoraA" : "12:00:00",
+		"ProfissionalID" : 1,
+		"Titulo" : "",
+		"Descricao" : "",
+		"DiasSemana" : "1 2 3 4 5 6 7",
+		"LocalID" : "",
+		"BloqueioMulti" : "N"
+	}
+}

@@ -1,0 +1,15 @@
+{
+    "address_service_id": "3786802",
+    "is_returning": false,
+    "duration": 30,
+    "send_notifications": null,
+    "patient": {
+      "name": "Dennys",
+      "surname": "Marcos Machado de Oliveira",
+      "email": "me@dennys.dev",
+      "phone": 5512997821301,
+      "birth_date": "1998-11-24",
+      "nin": 36253254898,
+      "gender": "m"
+    }
+  }

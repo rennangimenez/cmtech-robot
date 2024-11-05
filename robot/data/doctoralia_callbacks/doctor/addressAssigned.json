@@ -1,0 +1,20 @@
+{
+    "name": "address-assigned",
+    "data": {
+        "facility": {
+            "id": "120380",
+            "name": "QA FeegowAtomationClinic"
+        },
+        "doctor": {
+            "id": "826702",
+            "name": "QA Feegow",
+            "surname": "Caio"
+        },
+        "address": {
+            "id": "1138668",
+            "name": "QA FeegowAtomationClinic",
+            "street": "Rua Rodrigo Lobato"
+        }
+    },
+    "created_at": "2023-01-31T17:32:28+01:00"
+}

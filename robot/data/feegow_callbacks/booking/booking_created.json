@@ -1,0 +1,32 @@
+{
+    "event": "booking/create",
+    "licenseID": "40077",
+    "payload": {
+        "PacienteID": 9,
+        "NomePaciente": "Dennys Marcos Machado de Oliveira",
+        "telefone": "12997821301",
+        "ProfissionalID": 1,
+        "NomeProfissional": "Malena Molina",
+        "Data": "2024-08-28",
+        "Hora": "09:00",
+        "TipoCompromissoID": 1,
+        "StaID": 1,
+        "Status": "Marcado - não confirmado",
+        "ValorConsulta": 150,
+        "Notas": "",
+        "HoraSta": "00:40:00",
+        "ConfEmail": "S",
+        "ConfSMS": "S",
+        "EspecialidadeID": 227,
+        "NomeEspecialidade": "Clinica Médica",
+        "TabelaParticularID": null,
+        "Tabela": null,
+        "NomeClinica": "Doctoralia Demo",
+        "SysUser": 160116117,
+        "UnidadeID": 0,
+        "id": 1756,
+        "integrationID": null,
+        "_v": 2,
+        "NotificarPaciente": 1
+    }
+}

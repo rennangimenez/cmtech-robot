@@ -1,0 +1,75 @@
+{
+    "name": "slot-booking",
+    "data": {
+        "facility": {
+            "id": "120380",
+            "name": "QA FeegowAtomationClinic",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380",
+                    "method": "get"
+                }
+            }
+        },
+        "doctor": {
+            "id": "826702",
+            "name": "QA Feegow",
+            "surname": "Caio",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702",
+                    "method": "get"
+                }
+            }
+        },
+        "address": {
+            "id": "1138668",
+            "name": "QA FeegowAtomationClinic",
+            "street": "Rua Rodrigo Lobato",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702/addresses/1138668",
+                    "method": "get"
+                },
+                "facility": {
+                    "href": "/api/v3/integration/facilities/120380",
+                    "method": "get"
+                },
+                "doctor": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702",
+                    "method": "get"
+                },
+                "services": {
+                    "href": "/api/v3/integration/facilities/120380/doctors/826702/addresses/1138668/services",
+                    "method": "get"
+                }
+            }
+        },
+        "visit_booking_request": {
+            "start_at": "2024-09-30T10:38:26-03:00",
+            "end_at": "2024-09-30T11:38:26-03:00",
+            "duration": 30,
+            "booking_by": "user",
+            "booking_at": "2024-09-30T10:38:26-03:00",
+            "patient": {
+                "name": "Dennys",
+                "surname": "Oliveira",
+                "email": "dennys.oliveira@docplanner.com",
+                "phone": "+5512997821301",
+                "is_returning": true
+            },
+            "address_service": {
+                "id": "3534527",
+                "name": "Teleconsulta",
+                "price": 120,
+                "is_price_from": false,
+                "service_id": "5044",
+                "is_default": false,
+                "description": "",
+                "is_visible": true
+            },
+            "signature": "e3948336-70cf-efad-2119-43ba43cb6ec5"
+        }
+    },
+    "created_at": "2024-09-30T10:38:26-01:00"
+}

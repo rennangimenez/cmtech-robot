@@ -1,0 +1,18 @@
+{
+    "event": "schedule/delete",
+    "licenseID": 17973,
+    "payload": {
+        "UnidadeID": 4,
+        "id": 125,
+        "DiaSemana": 4,
+        "HoraDe": "11:00:00",
+        "HoraA": "15:00:00",
+        "ProfissionalID": 8,
+        "LocalID": 8,
+        "Intervalo": 30,
+        "Compartilhada": "S",
+        "TipoGrade": "0",
+        "InicioVigencia": "",
+        "FimVigencia": ""
+    }
+}
