@@ -1,8 +1,7 @@
 *** Variables ***
-
 ${DOCPLANNER_API_OAUTH}                       https://www.doctoralia.com.br/oauth/v2
-${DOCTORALIA_API_BASE_URL}                    https://www.doctoralia.com.br/api/v3/integration
-${DOCTORALIA_CALLBACKS_BASE_URL}              https://calendar-connector.feegow.com/dev/doctoralia
+${DOCPLANNER_API_BASE_URL}                    https://www.doctoralia.com.br/api/v3/integration
+${DOCPLANNER_CALLBACKS_BASE_URL}              https://calendar-connector.feegow.com/dev/doctoralia
 
 ${CONNECTOR_API_BASE_URL}                  https://calendar-connector.feegow.com/dev
 ${FEEGOW_CALLBACKS_URL}                    ${CONNECTOR_API_BASE_URL}/feegow
