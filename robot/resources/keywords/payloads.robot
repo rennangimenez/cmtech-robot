@@ -4,12 +4,26 @@ Resource          ../../resources/global/settings.robot
 *** Variables ***
 ${robot_dir}=              .${/}robot
 ${addressService_id}=      3786802
-${canceledBooking_id}
-${secondBooked_slot}
-${start_at}
-${end_at}
 
 *** Keywords ***
+Generate random data to avoid schedule conflict
+    ${current_date}=    Get Current Date      result_format=datetime    exclude_millis=yes
+    ${date_start}=      Add Time To Date      ${current_date}             time=7 days      result_format=datetime
+    ${date_end}=        Add Time To Date      ${current_date}             time=60 weeks    result_format=datetime
+    ${random_date}=     Date Between Dates    date_start=${date_start}    date_end=${date_end}
+    ${random_date}=     Convert Date          ${random_date}              result_format=%Y-%m-%d
+    ${random_hour}=     Time                  pattern=%H:%M:%S            end_datetime=None   
+
+    Set Suite Variable    ${random_date}
+    Set Suite Variable    ${random_hour}
+
+Generate random patient and professional ids
+    ${random_patient_id}=          Random Int    min=1    max=9 
+    ${random_professional_id}=     Random Int    min=1    max=9 
+
+    Set Suite Variable    ${random_patient_id}
+    Set Suite Variable    ${random_professional_id}
+
 Generate number and date consts
     ${currentTimePlus1}=      Get Time Plus Hours       1
     ${currentTimePlus2}=      Get Time Plus Hours       2
@@ -21,21 +35,17 @@ Generate number and date consts
     Set Suite Variable    ${currentTimePlus4}
 
 Feegow Rest API - Data set
-    ${local_id}=           Set Variable   1
-    ${patient_id}=         Set Variable   9
-    ${profissional_id}=    Set Variable   1      
-    ${procedimento_id}=    Set Variable   8
-    ${especialidade_id}=   Set Variable   227
-    ${valor_id}=           Set Variable   1500
-    ${plano_id}=           Set Variable   0
-    ${motivo_id}=          Set Variable   1
-    ${obs_id}=             Set Variable   Paciente
-    ${formatted_time}=    Get Time Plus Hours    1
-    ${data}=              Get Substring         ${formatted_time}    0    10
-    ${horario}=           Get Substring         ${formatted_time}    11   19
+    ${local_id}=            Set Variable   1  
+    ${procedimento_id}=     Set Variable   8
+    ${especialidade_id}=    Set Variable   227
+    ${valor_id}=            Set Variable   1500
+    ${plano_id}=            Set Variable   0
+    ${motivo_id}=           Set Variable   1
+    ${obs_id}=              Set Variable   Paciente
+    ${formatted_time}=      Get Time Plus Hours    1
+    ${data}=                Get Substring         ${formatted_time}    0    10
+    ${horario}=             Get Substring         ${formatted_time}    11   19
     Set Suite Variable    ${local_id}
-    Set Suite Variable    ${patient_id}
-    Set Suite Variable    ${profissional_id}
     Set Suite Variable    ${procedimento_id}
     Set Suite Variable    ${especialidade_id}
     Set Suite Variable    ${valor_id}
@@ -46,22 +56,47 @@ Feegow Rest API - Data set
     Set Suite Variable    ${obs_id}
 
 Connector Docplanner Callbacks Token - Generate the bearer token
-    ${callbacks_headers}=              Create Dictionary    Authorization=Bearer ${CONNECTORAPI_CALLBACKS_TOKEN}    Content-Type=application/json
-    Set Suite Variable       ${callbacks_headers}
+    &{connectorApi_callbacks_headers}=    Create Dictionary    Authorization=Bearer ${CONNECTOR_API_TOKEN}    Content-Type=application/json
+    Set Suite Variable       &{connectorApi_callbacks_headers}
 
 Generate connector-api headers
     &{connectorApi_headers}=   Create Dictionary    Authorization=Bearer ${CONNECTOR_API_TOKEN}
     Set Suite Variable       &{connectorApi_headers}
 
 Feegow Rest API - Create Appointment
-    ${feegowAPI_booking}=    Load Json From File    file_name=${robot_dir}${/}data${/}feegow_rest_api${/}appointment${/}newAppoint.json 
-    Set To Dictionary         ${feegowAPI_booking}    local_id           ${local_id}
-    Set To Dictionary         ${feegowAPI_booking}    paciente_id        ${patient_id}
-    Set To Dictionary         ${feegowAPI_booking}    profissional_id    ${profissional_id}
-    Set To Dictionary         ${feegowAPI_booking}    procedimento_id    ${especialidade_id}
+    Generate random data to avoid schedule conflict
+    Generate random patient and professional ids
+
+    ${feegowAPI_newAppoint}=    Load Json From File    file_name=${robot_dir}${/}data${/}feegow_rest_api${/}appointment${/}newAppoint.json 
+
+    Set To Dictionary        ${feegowAPI_newAppoint}    local_id            ${local_id}
+    Set To Dictionary        ${feegowAPI_newAppoint}    paciente_id         ${random_patient_id}
+    Set To Dictionary        ${feegowAPI_newAppoint}    profissional_id     ${random_professional_id}
+    Set To Dictionary        ${feegowAPI_newAppoint}    procedimento_id     ${procedimento_id}
+    Set To Dictionary        ${feegowAPI_newAppoint}    especialidade_id    ${especialidade_id}
+    Set To Dictionary        ${feegowAPI_newAppoint}    data                ${random_date}
+    Set To Dictionary        ${feegowAPI_newAppoint}    horario             ${random_hour}
+    Set To Dictionary        ${feegowAPI_newAppoint}    valor               ${valor_id}
+    Set To Dictionary        ${feegowAPI_newAppoint}    plano               ${plano_id}
+
+    Set Suite Variable       ${feegowAPI_newAppoint}
+
+Feegow Rest API - Change Appointment
+    Generate random data to avoid schedule conflict
+
+    ${feegowAPI_rescheduleAppoint}=    Load Json From File    file_name=${robot_dir}${/}data${/}feegow_rest_api${/}appointment${/}rescheduleAppoint.json 
     
-    Set To Dictionary         ${feegowAPI_booking}    valor              ${valor_id}
-    Set To Dictionary         ${feegowAPI_booking}    plano              ${plano_id}
+    Set To Dictionary        ${feegowAPI_rescheduleAppoint}    agendamento_id    ${newAppoint_id}
+    Set To Dictionary        ${feegowAPI_rescheduleAppoint}    data              ${random_date}
+    Set To Dictionary        ${feegowAPI_rescheduleAppoint}    horario           ${random_hour}
+    
+    Set Suite Variable       ${feegowAPI_rescheduleAppoint}
+
+Feegow Rest API - Cancel Appointment
+    ${feegowAPI_cancelAppoint}=    Load Json From File    file_name=${robot_dir}${/}data${/}feegow_rest_api${/}appointment${/}cancelAppoint.json 
+
+    Set To Dictionary        ${feegowAPI_cancelAppoint}    agendamento_id    ${newAppoint_id}
+    Set Suite Variable       ${feegowAPI_cancelAppoint}
 
 Docplanner Callbacks Payloads
     ${slotBooking}=           Load JSON From File     file_name=${robot_dir}${/}data${/}docplanner_callbacks${/}booking${/}slotBooking.json
@@ -115,20 +150,40 @@ Docplanner Callbacks Payloads
     Set Suite Variable        ${addressServiceDeleted}
 
 Feegow Callbacks Payloads
+    Feegow Rest API - New Appoint
     ${feegow_bookingCreated}=        Load JSON From File     file_name=${robot_dir}${/}data${/}feegow_callbacks${/}booking${/}booking_created.json
-    Set To Dictionary         ${feegow_bookingCreated}    data           ${data}
-    Set To Dictionary         ${feegow_bookingCreated}    horario        ${horario}
-    Set To Dictionary         ${feegow_bookingCreated}    valor          ${valor_id}
-    Set To Dictionary         ${feegow_bookingCreated}    plano          ${plano_id}
+    Set To Dictionary         ${feegow_bookingCreated['payload']}    PacienteID        ${random_patient_id}
+    Set To Dictionary         ${feegow_bookingCreated['payload']}    ProfissionalID    ${random_professional_id}
+    Set To Dictionary         ${feegow_bookingCreated['payload']}    Data              ${random_date}
+    Set To Dictionary         ${feegow_bookingCreated['payload']}    Hora              ${random_hour}
+    Set To Dictionary         ${feegow_bookingCreated['payload']}    id                ${newAppoint_id}
+
     Set Suite Variable        ${feegow_bookingCreated}
 
+    Feegow Rest API - Change Appointment
+    Feegow Rest API - Reschedule appoint
     ${feegow_bookingEdit}=           Load JSON From File     file_name=${robot_dir}${/}data${/}feegow_callbacks${/}booking${/}booking_edit.json
+    Set To Dictionary         ${feegow_bookingEdit['payload']}    PacienteID        ${random_patient_id}
+    Set To Dictionary         ${feegow_bookingEdit['payload']}    ProfissionalID    ${random_date}
+    Set To Dictionary         ${feegow_bookingEdit['payload']}    Data              ${random_date}
+    Set To Dictionary         ${feegow_bookingEdit['payload']}    Hora              ${random_hour}
+    Set To Dictionary         ${feegow_bookingEdit['payload']}    id                ${newAppoint_id}
     Set Suite Variable        ${feegow_bookingEdit}
 
+    Feegow Rest API - Change Appointment
+    Feegow Rest API - Reschedule appoint
     ${feegow_bookingMoved}=          Load JSON From File     file_name=${robot_dir}${/}data${/}feegow_callbacks${/}booking${/}booking_moved.json
+    Set To Dictionary         ${feegow_bookingMoved['payload']}    PacienteID        ${random_patient_id}
+    Set To Dictionary         ${feegow_bookingMoved['payload']}    ProfissionalID    ${random_date}
+    Set To Dictionary         ${feegow_bookingMoved['payload']}    Data              ${data}
+    Set To Dictionary         ${feegow_bookingMoved['payload']}    Hora              ${horario}
+    Set To Dictionary         ${feegow_bookingMoved['payload']}    id                ${newAppoint_id}
     Set Suite Variable        ${feegow_bookingMoved}
 
+    Feegow Rest API - Cancel Appointment
+    Feegow Rest API - Delete appoint
     ${feegow_bookingCanceled}=       Load JSON From File     file_name=${robot_dir}${/}data${/}feegow_callbacks${/}booking${/}booking_canceled.json
+    Set To Dictionary         ${feegow_bookingCanceled['payload']}    id    ${newAppoint_id}
     Set Suite Variable        ${feegow_bookingCanceled}
 
     ${feegow_scheduleDeleted}=       Load JSON From File     file_name=${robot_dir}${/}data${/}feegow_callbacks${/}schedule${/}schedule_deleted.json
@@ -167,4 +222,5 @@ API Payload Setup
     Docplanner API - Get Address Id
     DocPlanner API - Book Slot        ${currentTimePlus1}
     Docplanner Callbacks Payloads
+    Feegow Rest API - Create Appointment
     Feegow Callbacks Payloads

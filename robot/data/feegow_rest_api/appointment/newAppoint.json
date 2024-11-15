@@ -1,11 +1,11 @@
 {
-	"local_id": 1,
-	"paciente_id": 9,
-	"profissional_id": 1,
-	"procedimento_id": 8,
-	"especialidade_id": 227,
-	"data": "30-05-2025",
-	"horario": "10:30:00",
-	"valor": 1500,
-	"plano": 0
+    "local_id": "1",
+    "paciente_id": "9",
+    "profissional_id": "1",
+    "procedimento_id": "8",
+    "especialidade_id": "227",
+    "data": "2025-11-13",
+    "horario": "10:30:00",
+    "valor": "1500",
+    "plano": "0"
 }
