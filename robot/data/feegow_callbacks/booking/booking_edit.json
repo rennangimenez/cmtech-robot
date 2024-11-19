@@ -1,17 +1,22 @@
 {
-    "event": "calendar-break/edit",
-    "licenseID": 17768,
+    "event": "booking/edit",
+    "licenseID": 17973,
     "payload": {
-        "UnidadeID": "",
-        "DataDe": "2024-03-01",
-        "DataA": "2024-03-01",
-        "HoraDe": "11:00:00",
-        "HoraA": "12:00:00",
+        "UnidadeID": 0,
+        "NotificarPaciente": true,
+        "PacienteID": 18,
         "ProfissionalID": 1,
-        "Titulo": "Teste Docplanner",
-        "Descricao": "Teste de bloqueio",
-        "DiasSemana": "1 2 3 4 5 6 7",
-        "BloqueioMulti": "N",
-        "id": 518
+        "Data": "2023-06-16",
+        "Hora": "12:00",
+        "TipoCompromissoID": 1,
+        "StaID": 1,
+        "Notas": "",
+        "HoraSta": "14:47:00",
+        "ConfEmail": "",
+        "ConfSMS": "",
+        "EspecialidadeID": 0,
+        "NomeClinica": "Doctoralia Demo",
+        "SysUser": 160044995,
+        "id": 759
     }
 }

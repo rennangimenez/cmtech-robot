@@ -7,22 +7,23 @@ ${addressService_id}=      3786802
 
 *** Keywords ***
 Generate random data to avoid schedule conflict
-    ${current_date}=    Get Current Date      result_format=datetime    exclude_millis=yes
+    ${current_date}=    Get Current Date      result_format=datetime      exclude_millis=yes
     ${date_start}=      Add Time To Date      ${current_date}             time=7 days      result_format=datetime
     ${date_end}=        Add Time To Date      ${current_date}             time=60 weeks    result_format=datetime
     ${random_date}=     Date Between Dates    date_start=${date_start}    date_end=${date_end}
     ${random_date}=     Convert Date          ${random_date}              result_format=%Y-%m-%d
-    ${random_hour}=     Time                  pattern=%H:%M:%S            end_datetime=None   
+    ${random_hour}=     Time                  pattern=%H:%M:%S            end_datetime=None
+
+
+    ${random_hour_plus_1}=    Add Time To Time    ${random_hour}    1 hour    result_format=timer    exclude_millis=yes
 
     Set Suite Variable    ${random_date}
     Set Suite Variable    ${random_hour}
+    Set Suite Variable    ${random_hour_plus_1}
 
-Generate random patient and professional ids
+Generate random patient id
     ${random_patient_id}=          Random Int    min=1    max=9 
-    ${random_professional_id}=     Random Int    min=1    max=9 
-
     Set Suite Variable    ${random_patient_id}
-    Set Suite Variable    ${random_professional_id}
 
 Generate number and date consts
     ${currentTimePlus1}=      Get Time Plus Hours       1
@@ -35,7 +36,8 @@ Generate number and date consts
     Set Suite Variable    ${currentTimePlus4}
 
 Feegow Rest API - Data set
-    ${local_id}=            Set Variable   1  
+    ${local_id}=            Set Variable   1
+    ${profissional_id}=     Set Variable   1
     ${procedimento_id}=     Set Variable   8
     ${especialidade_id}=    Set Variable   227
     ${valor_id}=            Set Variable   1500
@@ -46,6 +48,7 @@ Feegow Rest API - Data set
     ${data}=                Get Substring         ${formatted_time}    0    10
     ${horario}=             Get Substring         ${formatted_time}    11   19
     Set Suite Variable    ${local_id}
+    Set Suite Variable    ${profissional_id}
     Set Suite Variable    ${procedimento_id}
     Set Suite Variable    ${especialidade_id}
     Set Suite Variable    ${valor_id}
@@ -65,13 +68,13 @@ Generate connector-api headers
 
 Feegow Rest API - Create Appointment
     Generate random data to avoid schedule conflict
-    Generate random patient and professional ids
+    Generate random patient id
 
     ${feegowAPI_newAppoint}=    Load Json From File    file_name=${robot_dir}${/}data${/}feegow_rest_api${/}appointment${/}newAppoint.json 
 
     Set To Dictionary        ${feegowAPI_newAppoint}    local_id            ${local_id}
     Set To Dictionary        ${feegowAPI_newAppoint}    paciente_id         ${random_patient_id}
-    Set To Dictionary        ${feegowAPI_newAppoint}    profissional_id     ${random_professional_id}
+    Set To Dictionary        ${feegowAPI_newAppoint}    profissional_id     ${profissional_id}
     Set To Dictionary        ${feegowAPI_newAppoint}    procedimento_id     ${procedimento_id}
     Set To Dictionary        ${feegowAPI_newAppoint}    especialidade_id    ${especialidade_id}
     Set To Dictionary        ${feegowAPI_newAppoint}    data                ${random_date}
@@ -153,7 +156,7 @@ Feegow Callbacks Payloads
     Feegow Rest API - New Appoint
     ${feegow_bookingCreated}=        Load JSON From File     file_name=${robot_dir}${/}data${/}feegow_callbacks${/}booking${/}booking_created.json
     Set To Dictionary         ${feegow_bookingCreated['payload']}    PacienteID        ${random_patient_id}
-    Set To Dictionary         ${feegow_bookingCreated['payload']}    ProfissionalID    ${random_professional_id}
+    Set To Dictionary         ${feegow_bookingCreated['payload']}    ProfissionalID    ${profissional_id}
     Set To Dictionary         ${feegow_bookingCreated['payload']}    Data              ${random_date}
     Set To Dictionary         ${feegow_bookingCreated['payload']}    Hora              ${random_hour}
     Set To Dictionary         ${feegow_bookingCreated['payload']}    id                ${newAppoint_id}
@@ -164,7 +167,7 @@ Feegow Callbacks Payloads
     Feegow Rest API - Reschedule appoint
     ${feegow_bookingEdit}=           Load JSON From File     file_name=${robot_dir}${/}data${/}feegow_callbacks${/}booking${/}booking_edit.json
     Set To Dictionary         ${feegow_bookingEdit['payload']}    PacienteID        ${random_patient_id}
-    Set To Dictionary         ${feegow_bookingEdit['payload']}    ProfissionalID    ${random_date}
+    Set To Dictionary         ${feegow_bookingEdit['payload']}    ProfissionalID    ${profissional_id}
     Set To Dictionary         ${feegow_bookingEdit['payload']}    Data              ${random_date}
     Set To Dictionary         ${feegow_bookingEdit['payload']}    Hora              ${random_hour}
     Set To Dictionary         ${feegow_bookingEdit['payload']}    id                ${newAppoint_id}
@@ -174,7 +177,7 @@ Feegow Callbacks Payloads
     Feegow Rest API - Reschedule appoint
     ${feegow_bookingMoved}=          Load JSON From File     file_name=${robot_dir}${/}data${/}feegow_callbacks${/}booking${/}booking_moved.json
     Set To Dictionary         ${feegow_bookingMoved['payload']}    PacienteID        ${random_patient_id}
-    Set To Dictionary         ${feegow_bookingMoved['payload']}    ProfissionalID    ${random_date}
+    Set To Dictionary         ${feegow_bookingMoved['payload']}    ProfissionalID    ${profissional_id}
     Set To Dictionary         ${feegow_bookingMoved['payload']}    Data              ${data}
     Set To Dictionary         ${feegow_bookingMoved['payload']}    Hora              ${horario}
     Set To Dictionary         ${feegow_bookingMoved['payload']}    id                ${newAppoint_id}
