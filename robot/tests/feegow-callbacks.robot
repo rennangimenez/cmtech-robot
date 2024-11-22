@@ -3,7 +3,7 @@ Resource          ../resources/global/settings.robot
 Suite Setup       API Payload Setup
 
 *** Test Cases ***
-Feegow Callbacks
+TC.002 - Feegow Callbacks
     Feegow Callbacks - Booking - Booking Created
     Feegow Callbacks - Booking - Booking Edit
     Feegow Callbacks - Booking - Booking Moved

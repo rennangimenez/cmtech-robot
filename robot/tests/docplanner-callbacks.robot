@@ -3,7 +3,7 @@ Resource          ../resources/global/settings.robot
 Suite Setup       API Payload Setup
 
 *** Test Cases ***
-Docplanner callbacks
+TC.001 - Docplanner callbacks
     Docplanner Callbacks - Booking - Slot Booking
     Docplanner Callbacks - Booking - Slot Booked  
     Docplanner Callbacks - Booking - Booking Moving
